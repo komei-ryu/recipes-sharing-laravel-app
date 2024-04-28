@@ -5,12 +5,6 @@
 @section('main')
     <h1 class="mb-4">Register</h1>
 
-    @if (session('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <form method="POST" action="{{ route('registration.create') }}">
         @csrf
         <div class="mb-3">

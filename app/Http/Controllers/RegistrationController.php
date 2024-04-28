@@ -44,9 +44,9 @@ class RegistrationController extends Controller
         pages, the site remembers that the user is logged in. */ 
         Auth::login($user);
 
-        // redirect user to the registration page        
+        // redirect user to the home page        
         return redirect()
-            ->route('registration.index')
+            ->route('recipe.index')
             ->with('success', "Successfully created user for {$request->input('email')}");
     }
 }
