@@ -33,6 +33,12 @@
             @endif
         </ul>
 
+        @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <div class="mt-4 mx-5">
             @yield('main')
         </div>
