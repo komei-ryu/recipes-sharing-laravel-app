@@ -12,4 +12,12 @@
     @endif
 
     <p class="fs-3">Hi, {{ $user->name }}! What recipe would you like to check out?</p>
+    
+    @if ($recipes && count($recipes) > 0)
+        @foreach ($recipes as $recipe)
+            <p>{{ $recipe->title }} by {{ $recipe->user->name }}</p>
+        @endforeach
+    @else
+        <p>No recipe has been created by any user. Be the first one to create a recipe!</p>
+    @endif
 @endsection 
