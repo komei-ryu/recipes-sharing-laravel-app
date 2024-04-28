@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->boolean('favorited')->default(false);
             $table->timestamp('favorited_at', $precision = 0)->nullable();
             $table->foreignId('user_id')->constrained();
