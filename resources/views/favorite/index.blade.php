@@ -18,9 +18,6 @@
                             <button type="submit" class="btn btn-danger">Unfavorite this recipe</button>
                         </form>
                     </div>
-                    <!-- <a href="{{ route('favorite.destroy', $favorite->id) }}">
-                        <button type="button" class="btn btn-danger ms-5">Unfavorite this recipe</button>
-                    </a> -->
                 </div>
                 <p class="m-1">Author: {{ $favorite->recipe->user->name }}</p>
                 <p class="m-1">Favorited at: {{ $favorite->created_at }}</p>
