@@ -90,4 +90,17 @@ class RecipeController extends Controller
             ->route('recipe.show', $recipe->id)
             ->with('success', "Successfully updated recipe: {$recipe->title}");
     }
+
+    public function destroy($id)
+    {
+        // get the recipe that will be deleted
+        $recipe = Recipe::find($id);
+
+        // delete this row in the recipes table
+        Recipe::where('id', '=', $id)->delete();
+
+        return redirect()
+            ->route('recipe.index')
+            ->with('success', "Successfully deleted recipe: {$recipe->title}");
+    }
 }

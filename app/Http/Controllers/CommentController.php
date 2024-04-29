@@ -78,7 +78,7 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         $recipe = $comment->recipe;
 
-        // delete this row in the coments table
+        // delete this row in the comments table
         Comment::where('id', '=', $id)->delete();
 
         return redirect()
