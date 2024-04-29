@@ -48,7 +48,7 @@
             </div>
         @endif
 
-        <div class="mt-4 mx-5">
+        <div class="mt-4 mx-5 mb-5">
             @yield('main')
         </div>
     </div>

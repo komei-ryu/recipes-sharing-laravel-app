@@ -22,18 +22,25 @@
 
     <div class="d-flex justify-content-start me-4 mb-3">
         <h3>Comments:</h3>
-        <button type="button" class="btn btn-primary ms-5">Add comments</button>
+        <a href="{{ route('comment.create', $recipe->id) }}">
+            <button type="button" class="btn btn-primary ms-5">Add comments</button>
+        </a>
     </div>
     @if ($comments && count($comments) > 0)
         @foreach ($comments as $comment)
-            <div class="my-3 ms-2 fs-6">
+            <div class="my-3 p-2 fs-5 border rounded">
+                <p class="m-1">{{ $comment->content }}</p>
                 <p class="m-1">Comment author: {{ $comment->user->name }}</p>
                 <p class="m-1">Last updated at: {{ $comment->updated_at }}</p>
-                <p class="m-1">{{ $comment->content }}</p>
                 @if ($current_user->id == $comment->comment_author_user_id)
-                    <p class="mb-2 fw-bold fs-4">
-                        <a href="{{ route('comment.edit', $comment->id) }}" class="text-decoration-none">Edit Comment</a>
-                    </p>
+                    <div class="d-flex justify-content-start">
+                        <a href="{{ route('comment.edit', $comment->id) }}">
+                            <button type="button" class="btn btn-warning m-1">Edit comment</button>
+                        </a>
+                        <a href="{{ route('comment.destroy', $comment->id) }}">
+                            <button type="button" class="btn btn-danger m-1 ms-3">Delete comment</button>
+                        </a>
+                    </div>
                 @endif
             </div>
         @endforeach

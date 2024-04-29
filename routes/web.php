@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
     // home page that displays all recipes
     Route::get('/recipes', [RecipeController::class, 'index'])->name('recipe.index');
     // show the recipe creation form page
-    Route::get('/recipes/new', [RecipeController::class, 'create'])->name('recipe.create');
+    Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipe.create');
     // process recipe creation
     Route::post('/recipes', [RecipeController::class, 'store'])->name('recipe.store');
     // show the recipe detail page
@@ -41,8 +41,14 @@ Route::middleware(['auth'])->group(function () {
     // process removing a recipe from favorites
     Route::post('/favorites/{id}', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
 
+    // show the comment creation form page
+    Route::get('/comments/create/{recipe_id}', [CommentController::class, 'create'])->name('comment.create');
+    // process comment creation
+    Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
     // show the comment edit form page
     Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])->name('comment.edit');
+    // process removing a comment
+    Route::post('/comments/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
     // logout user
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
