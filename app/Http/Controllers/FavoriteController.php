@@ -48,4 +48,22 @@ class FavoriteController extends Controller
             ->route('recipe.show', $request->input('recipe_id'))
             ->with('success', "Successfully favorited recipe: {$recipe->title}");
     }
+
+    public function destroy($favorite_id)
+    {
+        // $request->validate([
+        //     'favorite_id' => 'required|exists:favorites,id',
+        // ]);
+
+        // get title of the recipe that will be deleted
+        $favorite = Favorite::find($favorite_id);
+        $recipe = $favorite->recipe;
+
+        // delete this row in the favorites table
+        Favorite::where('id', '=', $favorite_id)->delete();
+
+        return redirect()
+            ->route('favorite.index')
+            ->with('success', "Successfully remove recipe: {$recipe->title} from favorites");
+    }
 }

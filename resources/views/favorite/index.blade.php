@@ -8,9 +8,20 @@
     @if ($favorites && count($favorites) > 0)
         @foreach ($favorites as $favorite)
             <div class="my-3 ms-2 fs-6">
-                <p class="mb-2 fw-bold fs-4">
-                    <a href="{{ route('recipe.show', $favorite->recipe->id) }}" class="text-decoration-none">{{ $favorite->recipe->title }}</a>
-                </p>
+                <div class="d-flex justify-content-start">
+                    <div class="mb-2 fw-bold fs-4">
+                        <a href="{{ route('recipe.show', $favorite->recipe->id) }}" class="text-decoration-none">{{ $favorite->recipe->title }}</a>
+                    </div>
+                    <div class="ms-5">
+                        <form action="{{ route('favorite.destroy', $favorite->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Unfavorite this recipe</button>
+                        </form>
+                    </div>
+                    <!-- <a href="{{ route('favorite.destroy', $favorite->id) }}">
+                        <button type="button" class="btn btn-danger ms-5">Unfavorite this recipe</button>
+                    </a> -->
+                </div>
                 <p class="m-1">Author: {{ $favorite->recipe->user->name }}</p>
                 <p class="m-1">Favorited at: {{ $favorite->created_at }}</p>
             </div>

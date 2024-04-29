@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorite.index');
     // process adding recipes to favorites
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorite.store');
+    // process removing a recipe from favorites
+    Route::post('/favorites/{id}', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
 
     // logout user
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
