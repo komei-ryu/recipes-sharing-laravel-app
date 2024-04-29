@@ -24,7 +24,11 @@ user will be redirected to route('login') according to app/Http/Middleware/Authe
 in app/Http/Kernel.php */
 Route::middleware(['auth'])->group(function () {
     // home page that displays all recipes
-    Route::get('/', [RecipeController::class, 'index'])->name('recipe.index');
+    Route::get('/recipes', [RecipeController::class, 'index'])->name('recipe.index');
+    // show the recipe creation form page
+    Route::get('/recipes/new', [RecipeController::class, 'create'])->name('recipe.create');
+    // process recipe creation
+    Route::post('/recipes', [RecipeController::class, 'store'])->name('recipe.store');
 
     // logout user
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
