@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', $recipe->title . 'Details')
+@section('title', $recipe->title . ' Details')
 
 @section('main')
     <div class="d-flex justify-content-between me-4">
