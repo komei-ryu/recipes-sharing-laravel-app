@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('comment');
+            $table->text('content');
             $table->unsignedBigInteger('comment_author_user_id');
             $table->foreign('comment_author_user_id')->references('id')->on('users');
             $table->foreignId('recipe_id')->constrained();

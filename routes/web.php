@@ -5,6 +5,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\CommentController;
 
 // show the register form page
 Route::get('/register', [RegistrationController::class, 'index'])->name('registration.index');
@@ -33,12 +34,15 @@ Route::middleware(['auth'])->group(function () {
     // show the recipe detail page
     Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('recipe.show');
     
-    // favorites page that displays all recipes favorited by the current user
+    // show the favorites page that displays all recipes favorited by the current user
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorite.index');
     // process adding recipes to favorites
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorite.store');
     // process removing a recipe from favorites
     Route::post('/favorites/{id}', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
+
+    // show the comment edit form page
+    Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])->name('comment.edit');
 
     // logout user
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');

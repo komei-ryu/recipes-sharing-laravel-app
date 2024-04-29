@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recipe;
+use App\Models\Comment;
 use Auth; // provided by Laravel
 
 class RecipeController extends Controller
@@ -53,10 +54,15 @@ class RecipeController extends Controller
     }
 
     public function show($recipe_id)
-    {
+    {   
+        $recipe = Recipe::with(['user'])->find($recipe_id);
+        $comments = Comment::with(['user'])->where('recipe_id', '=', $recipe_id)->orderBy('updated_at', 'DESC')->get();
+
         return view('recipe/show', [
             // with eager loading
-            'recipe' => Recipe::with(['user'])->find($recipe_id),
+            'current_user' => Auth::user(),
+            'recipe' => $recipe,
+            'comments' => $comments,
         ]);
     }
 }
