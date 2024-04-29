@@ -28,7 +28,7 @@
                     <a href="{{ route('registration.index') }}" class="nav-link">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/login" class="nav-link">Login</a>
+                    <a href="{{ route('login') }}" class="nav-link">Login</a>
                 </li>
             @endif
         </ul>
