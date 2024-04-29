@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
-use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\FavoriteController;
 
 // show the register form page
 Route::get('/register', [RegistrationController::class, 'index'])->name('registration.index');
@@ -29,6 +30,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/recipes/new', [RecipeController::class, 'create'])->name('recipe.create');
     // process recipe creation
     Route::post('/recipes', [RecipeController::class, 'store'])->name('recipe.store');
+    // show the recipe detail page
+    Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('recipe.show');
+    
+    // process adding recipes to favorites
+    Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorite.store');
 
     // logout user
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');

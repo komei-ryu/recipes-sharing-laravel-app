@@ -17,7 +17,9 @@
         <div>
         @foreach ($recipes as $recipe)
             <div class="my-3 ms-2 fs-6">
-                <p class="mb-2 fw-bold fs-4"><a class="text-decoration-none">{{ $recipe->title }}</a></p>
+                <p class="mb-2 fw-bold fs-4">
+                    <a href="{{ route('recipe.show', $recipe->id) }}" class="text-decoration-none">{{ $recipe->title }}</a>
+                </p>
                 <p class="m-1">Author: {{ $recipe->user->name }}</p>
                 <p class="m-1">Last updated at: {{ $recipe->updated_at }}</p>
             </div>

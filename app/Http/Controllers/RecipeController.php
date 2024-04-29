@@ -33,7 +33,7 @@ class RecipeController extends Controller
         next line of code. */
         $request->validate([
             'title' => 'required|max:99',
-            'description' => 'max:1000000',
+            'description' => 'max:100000',
         ]);
 
         // insert new recipe
@@ -50,5 +50,13 @@ class RecipeController extends Controller
         return redirect()
             ->route('recipe.index')
             ->with('success', "Successfully created recipe: {$request->input('title')}");
+    }
+
+    public function show($recipe_id)
+    {
+        return view('recipe/show', [
+            // with eager loading
+            'recipe' => Recipe::with(['user'])->find($recipe_id),
+        ]);
     }
 }
