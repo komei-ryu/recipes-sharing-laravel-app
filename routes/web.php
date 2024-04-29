@@ -47,8 +47,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
     // show the comment edit form page
     Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])->name('comment.edit');
+    // process comment update
+    Route::post('/comments/{id}', [CommentController::class, 'update'])->name('comment.update');
     // process removing a comment
-    Route::post('/comments/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::post('/comments/{id}/delete', [CommentController::class, 'destroy'])->name('comment.destroy');
 
     // logout user
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');

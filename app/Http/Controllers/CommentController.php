@@ -44,4 +44,31 @@ class CommentController extends Controller
             ->route('recipe.show', $request->input('recipe_id'))
             ->with('success', "Successfully added comment for recipe: {$recipe->title}");
     }
+
+    public function edit($id)
+    {
+        return view('comment/edit', [
+            'comment' => Comment::with(['recipe'])->find($id),
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        // pass an array of validation rules to validate()
+        $request->validate([
+            'content' => 'required|max:100000',
+        ]);
+
+        // update comment
+        $comment = Comment::find($id);
+        $comment->content = $request->input('content');
+        $comment->save();
+
+        $recipe = $comment->recipe;
+
+        // redirect() redirects to a specific page
+        return redirect()
+            ->route('recipe.show', $recipe->id)
+            ->with('success', "Successfully updated comment for recipe: {$recipe->title}");
+    }
 }
