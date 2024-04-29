@@ -40,7 +40,7 @@ class AuthController extends Controller
         ]);
 
         if ($wasLoginSuccessful) {
-            return redirect()->route('recipe.index');
+            return redirect()->route('recipe.index')->with('success', 'Login successful');
         } 
         
         // send flash data using with()
