@@ -37,9 +37,10 @@
                         <a href="{{ route('comment.edit', $comment->id) }}">
                             <button type="button" class="btn btn-warning m-1">Edit comment</button>
                         </a>
-                        <a href="{{ route('comment.destroy', $comment->id) }}">
-                            <button type="button" class="btn btn-danger m-1 ms-3">Delete comment</button>
-                        </a>
+                        <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger m-1 ms-3">Delete comment</button>
+                        </form>
                     </div>
                 @endif
             </div>

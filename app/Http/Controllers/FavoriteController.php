@@ -51,11 +51,7 @@ class FavoriteController extends Controller
 
     public function destroy($favorite_id)
     {
-        // $request->validate([
-        //     'favorite_id' => 'required|exists:favorites,id',
-        // ]);
-
-        // get title of the recipe that will be deleted
+        // get the recipe that will be deleted
         $favorite = Favorite::find($favorite_id);
         $recipe = $favorite->recipe;
 
@@ -64,6 +60,6 @@ class FavoriteController extends Controller
 
         return redirect()
             ->route('favorite.index')
-            ->with('success', "Successfully remove recipe: {$recipe->title} from favorites");
+            ->with('success', "Successfully removed recipe: {$recipe->title} from favorites");
     }
 }

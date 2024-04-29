@@ -71,4 +71,18 @@ class CommentController extends Controller
             ->route('recipe.show', $recipe->id)
             ->with('success', "Successfully updated comment for recipe: {$recipe->title}");
     }
+
+    public function destroy($id)
+    {
+        // get the recipe whose comment will be deleted
+        $comment = Comment::find($id);
+        $recipe = $comment->recipe;
+
+        // delete this row in the coments table
+        Comment::where('id', '=', $id)->delete();
+
+        return redirect()
+            ->route('recipe.show', $recipe->id)
+            ->with('success', "Successfully removed comment about recipe: {$recipe->title}");
+    }
 }
