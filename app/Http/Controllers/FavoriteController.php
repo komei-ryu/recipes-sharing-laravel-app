@@ -12,7 +12,7 @@ class FavoriteController extends Controller
     public function index()
     {
         return view('favorite/index', [
-            'favorites' => Favorite::with(['recipe', 'recipe.user'])->orderBy('created_at', 'DESC')->get(),
+            'favorites' => Favorite::with(['recipe', 'recipe.user'])->where('favorited_by_user_id', '=', Auth::user()->id)->orderBy('created_at', 'DESC')->get(),
         ]);
     }
 
