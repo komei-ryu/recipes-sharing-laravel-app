@@ -65,4 +65,29 @@ class RecipeController extends Controller
             'comments' => $comments,
         ]);
     }
+
+    public function edit($id)
+    {
+        return view('recipe/edit', [
+            'recipe' => Recipe::with(['user'])->find($id),
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        // pass an array of validation rules to validate()
+        $request->validate([
+            'description' => 'required|max:100000',
+        ]);
+
+        // update recipe
+        $recipe = Recipe::find($id);
+        $recipe->description = $request->input('description');
+        $recipe->save();
+
+        // redirect() redirects to a specific page
+        return redirect()
+            ->route('recipe.show', $recipe->id)
+            ->with('success', "Successfully updated recipe: {$recipe->title}");
+    }
 }

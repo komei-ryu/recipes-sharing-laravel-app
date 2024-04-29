@@ -33,6 +33,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/recipes', [RecipeController::class, 'store'])->name('recipe.store');
     // show the recipe detail page
     Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('recipe.show');
+    // show the recipe edit form page
+    Route::get('/recipes/{id}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
+    // process recipe update
+    Route::post('/recipes/{id}', [RecipeController::class, 'update'])->name('recipe.update');
+    // process removing a recipe
+    Route::post('/recipes/{id}/delete', [RecipeController::class, 'destroy'])->name('recipe.destroy');
     
     // show the favorites page that displays all recipes favorited by the current user
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorite.index');

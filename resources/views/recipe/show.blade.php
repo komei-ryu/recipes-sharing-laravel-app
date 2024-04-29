@@ -17,6 +17,18 @@
         </div>
     </div>
 
+    @if ($current_user->id == $recipe->user_id)
+        <div class="d-flex justify-content-start mb-3">
+            <a href="{{ route('recipe.edit', $recipe->id) }}">
+                <button type="button" class="btn btn-warning m-1">Edit recipe</button>
+            </a>
+            <form action="{{ route('recipe.destroy', $recipe->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger m-1 ms-3">Delete recipe</button>
+            </form>
+        </div>
+    @endif
+
     <h3>Description:</h3>
     <p class="ms-1 mt-3 fs-5">{{ $recipe->description }}</p>
 
