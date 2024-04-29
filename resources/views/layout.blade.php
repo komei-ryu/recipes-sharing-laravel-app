@@ -18,6 +18,9 @@
                     <a href="{{ route('recipe.index') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('favorite.index') }}" class="nav-link">Favorites</a>
+                </li>
+                <li class="nav-item">
                     <form method="POST" action="{{ route('auth.logout') }}">
                         @csrf
                         <button type="submit" class="btn btn-link text-decoration-none">Logout</button>

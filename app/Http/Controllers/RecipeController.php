@@ -13,7 +13,7 @@ class RecipeController extends Controller
         return view('recipe/index', [
             // Auth::user() gives the logged in user from the session
             'user' => Auth::user(),
-            'recipes' => Recipe::with('user')->orderBy('updated_at', 'DESC')->get(),
+            'recipes' => Recipe::with(['user'])->orderBy('updated_at', 'DESC')->get(),
         ]);
     }
 
