@@ -8,6 +8,10 @@
         <div class="my-3">
             <form action="{{ route('favorite.store') }}" method="POST">
                 @csrf
+                <input type="hidden" id="recipe_id" name="recipe_id" value="{{ $recipe->id }}">
+                @error('recipe_id')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
                 <button type="submit" class="btn btn-primary">Add to favorites</button>
             </form>
         </div>

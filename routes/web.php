@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
     // show the recipe detail page
     Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('recipe.show');
     
+    // favorites page that displays all recipes favorited by the current user
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorite.index');
     // process adding recipes to favorites
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorite.store');
 

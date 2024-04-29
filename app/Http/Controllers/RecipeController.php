@@ -22,7 +22,7 @@ class RecipeController extends Controller
         return view('recipe/create');
     }
 
-    // Leravel injects a Request object to every controller method
+    // Laravel injects a Request object to every controller method
     public function store(Request $request)
     {
         // pass an array of validation rules to validate()
